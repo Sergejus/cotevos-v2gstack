@@ -80,6 +80,7 @@ session_t *session_lookup(uint64_t sessionid)
     if (sessionid == 0) {
         return NULL;
     }
+    printf("Session ID: %llu\n", sessionid);
     union Key k = {.u64 = sessionid};
     qlock(&session_map_mutex);
     session_t **sessionpp =  (session_t**)mapfind(&session_map, k);

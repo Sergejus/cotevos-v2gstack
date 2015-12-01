@@ -63,6 +63,7 @@ void plgp_slac_listen_blocking(void *vargs)
                     dumpbytes(buffer, n);
                 } else {
                     printf(".");
+                    dumpbytes(buffer, n);
                     fflush(stdout);
                 }
                 break;

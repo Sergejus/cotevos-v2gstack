@@ -47,7 +47,7 @@ int chattyv2g = 0;
 
 #define BUFFER_SIZE 4096
 #define MAX_CLIENT_REQUEST_QUEUE_LEN 100
-#define ISO_15118_MSG_DEF "urn:iso:15118:2:2010:MsgDef"
+#define ISO_15118_MSG_DEF "urn:iso:15118:2:2013:MsgDef"
 //===================================
 //             Typdefs
 //===================================
@@ -635,7 +635,7 @@ int handle_handshake (comboconn_t *cconn, Chan *tc)
     // === Wait for request header ===
     err = comboreadn(cconn, buf, V2GTP_HEADER_LENGTH, tc);
     if (err != 0) {
-        if (chattyv2g) fprintf(stderr, "handle_handshake: sslreadn error\n");
+        if (chattyv2g) fprintf(stderr, "handle_handshake: sslreadn error\n Buffer: %s\n", buf);
         return -1;
     }
     err = read_v2gtpHeader(buf, &payload_len);
@@ -664,6 +664,8 @@ int handle_handshake (comboconn_t *cconn, Chan *tc)
     for (i = 0; i < handshake_req.supportedAppProtocolReq.AppProtocol.arrayLen ; i++) {
         str = handshake_req.supportedAppProtocolReq.AppProtocol.array[0].ProtocolNamespace.characters;
         strlen = handshake_req.supportedAppProtocolReq.AppProtocol.array[0].ProtocolNamespace.charactersLen;
+	//Debug print
+	fprintf(stderr, "Debug: %s\n", str);
         if (compare_exi_string_to_string(str, ISO_15118_MSG_DEF, strlen) == 0) {
             err = 0;
             break;

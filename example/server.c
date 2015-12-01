@@ -229,8 +229,8 @@ int handle_session_setup(struct v2gEXIDocument *exiIn,
         return -1;
     }
     res->ResponseCode = v2gresponseCodeType_OK;
-    res->EVSEID.characters[0] = 0;
-    res->EVSEID.characters[1] = 20;
+    res->EVSEID.characters[0] = '7';
+    res->EVSEID.characters[1] = '2';
     res->EVSEID.charactersLen = 2;
     //exiOut->V2G_Message.Body.SessionSetupRes.EVSETimeStamp_isUsed = 1u;
     //exiOut->V2G_Message.Body.SessionSetupRes.EVSETimeStamp = 123456789;
