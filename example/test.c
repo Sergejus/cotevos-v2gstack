@@ -186,6 +186,8 @@ static void evse(const char *if_name)
     secc_listen_tcp(tcp_sockfd, &create_response_message);
     // Set port to 0 to disable tls or tcp
     // (always do sdp_listen after secc_listen_*)
+//     int tls_port = 0;
+//     int tcp_port = 50000;
     sdp_listen(if_name, tls_port, tcp_port);
 }
 

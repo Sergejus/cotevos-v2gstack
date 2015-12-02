@@ -228,10 +228,19 @@ int handle_session_setup(struct v2gEXIDocument *exiIn,
         printf("session creation error\n");
         return -1;
     }
-    res->ResponseCode = v2gresponseCodeType_OK;
-    res->EVSEID.characters[0] = '7';
-    res->EVSEID.characters[1] = '2';
-    res->EVSEID.charactersLen = 2;
+    res->ResponseCode = v2gresponseCodeType_OK_NewSessionEstablished;
+    res->EVSEID.characters[0] = 'C';
+    res->EVSEID.characters[1] = 'O';
+    res->EVSEID.characters[2] = 'T';
+    res->EVSEID.characters[3] = 'E';
+    res->EVSEID.characters[4] = 'V';
+    res->EVSEID.characters[5] = 'O';
+    res->EVSEID.characters[6] = 'S';
+    res->EVSEID.characters[7] = 'D';
+    res->EVSEID.characters[8] = 'T';
+    res->EVSEID.characters[9] = 'U';
+    res->EVSEID.charactersLen = 10;
+
     //exiOut->V2G_Message.Body.SessionSetupRes.EVSETimeStamp_isUsed = 1u;
     //exiOut->V2G_Message.Body.SessionSetupRes.EVSETimeStamp = 123456789;
     return 0;
